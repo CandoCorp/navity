@@ -10,7 +10,6 @@
     }
   ],
   "scripts": {
-    "install": "npm install",
     "start": "babel-node --max_old_space_size=4096 server.js",
     "build": "cross-env NODE_OPTIONS=--max_old_space_size=4096 NODE_ENV=production webpack"
   },

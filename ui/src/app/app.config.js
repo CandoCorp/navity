@@ -82,6 +82,39 @@ export default function AppConfig($provide,
 
     configureTheme();
 
+    function blueDarkGrayTheme(){
+        var tbPrimaryPalette = $mdThemingProvider.extendPalette('blue-grey', {
+            '500': '#37474f',
+            '600': '#90a4ae'
+        });
+
+        var tbAccentPalette = $mdThemingProvider.extendPalette('deep-orange');
+
+        $mdThemingProvider.definePalette('tb-primary', tbPrimaryPalette);
+        $mdThemingProvider.definePalette('tb-accent', tbAccentPalette);
+
+        var tbDarkPrimaryPalette = $mdThemingProvider.extendPalette('tb-primary', {
+            '500': '#607D8B'
+        });
+
+        var tbDarkPrimaryBackgroundPalette = $mdThemingProvider.extendPalette('tb-primary', {
+            '800': '#37474F'
+        });
+
+        $mdThemingProvider.definePalette('tb-dark-primary', tbDarkPrimaryPalette);
+        $mdThemingProvider.definePalette('tb-dark-primary-background', tbDarkPrimaryBackgroundPalette);
+
+        $mdThemingProvider.theme('default')
+            .primaryPalette('tb-primary')
+            .accentPalette('tb-accent');
+
+        $mdThemingProvider.theme('tb-dark')
+            .primaryPalette('tb-dark-primary')
+            .accentPalette('tb-accent')
+            .backgroundPalette('tb-dark-primary-background')
+            .dark();
+    }
+
     function blueGrayTheme() {
         var tbPrimaryPalette = $mdThemingProvider.extendPalette('blue-grey');
         var tbAccentPalette = $mdThemingProvider.extendPalette('orange', {
@@ -138,16 +171,22 @@ export default function AppConfig($provide,
 
     function configureTheme() {
 
-        var theme = 'indigo';
+        var theme = 'blueDarkGray';
 
-        if (theme === 'blueGray') {
-            blueGrayTheme();
-        } else {
-            indigoTheme();
+        switch (theme) {
+            case "blueGray":{
+                blueGrayTheme()
+            }break;
+            case "indigo":{
+                indigoTheme()
+            }break;
+            case "blueDarkGray":{
+                blueDarkGrayTheme()
+            }break;
         }
 
         $mdThemingProvider.setDefaultTheme('default');
-        //$mdThemingProvider.alwaysWatchTheme(true);
+        $mdThemingProvider.alwaysWatchTheme(true);
     }
 
     function getLanguageAliases(supportedLangs) {

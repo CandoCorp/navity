@@ -1,6 +1,6 @@
 # ![alt-text](https://navity.net/assets/navity.png)
 
-Navity is a system that allows having relevant information at sea through smart sensors to help care for marine ecosystems, such as detecting the presence of unauthorized vessels and water pollution.
+Navity is a Wireless Sensor Network that allows having relevant information at sea, through our LPWAN network we can deploy smart sensors to help taking care of marine ecosystems, such as detecting the presence of unauthorized vessels, water pollution or help in early detection of floods in rivers.
 
 # Motivation for Navity
 Galapagos has always experienced problems with illegal fishing. In 2017 a chinese float captured almost 600000 pounds of shark fins, in the borders of Galapagos islands. Only in US the financial losses are value up to $23 billion per year. Cost estimates indicate that flooding has caused more than $480 million US in damage to homes, while businesses have suffered $300 million US in damage. Without considering the environmental loss that it does. 

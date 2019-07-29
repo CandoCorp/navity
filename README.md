@@ -11,6 +11,6 @@ Navity is a platform that allows having relevant information at sea through smar
 ## Road Map
 
 
-## License
-[GPL-3.0](https://choosealicense.com/licenses/gpl-3.0/)
+## License [GPL-3.0](https://choosealicense.com/licenses/gpl-3.0/)
 
+Client platform is based on [Thingsboard](https://thingsboard.io) implementation.

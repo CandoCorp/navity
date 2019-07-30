@@ -111,6 +111,14 @@ public class DefaultSystemDataLoaderService implements SystemDataLoaderService {
         node.put("password", ""); //NOSONAR, key used to identify password field (not password value itself)
         mailSettings.setJsonValue(node);
         adminSettingsService.saveAdminSettings(TenantId.SYS_TENANT_ID, mailSettings);
+
+        AdminSettings ibmCloudSettings = new AdminSettings();
+        ibmCloudSettings.setKey("ibm");
+        node = objectMapper.createObjectNode();
+        node.put("username", "");
+        node.put("password", "");
+        ibmCloudSettings.setJsonValue(node);
+        adminSettingsService.saveAdminSettings(TenantId.SYS_TENANT_ID, ibmCloudSettings);
     }
 
     @Override

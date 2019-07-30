@@ -23,11 +23,14 @@ function AdminService($http, $q) {
     var service = {
         getAdminSettings: getAdminSettings,
         saveAdminSettings: saveAdminSettings,
+        getIbmCloudSettings: getIbmCloudSettings,
+        saveIbmCloudSettings: saveIbmCloudSettings,
         getSecuritySettings: getSecuritySettings,
         saveSecuritySettings: saveSecuritySettings,
+        sendTestIBMCloudConnection: sendTestIBMCloudConnection,
         sendTestMail: sendTestMail,
         checkUpdates: checkUpdates
-    }
+    };
 
     return service;
 
@@ -46,6 +49,28 @@ function AdminService($http, $q) {
         var deferred = $q.defer();
         var url = '/api/admin/settings';
         $http.post(url, settings).then(function success(response) {
+            deferred.resolve(response.data);
+        }, function fail(response) {
+            deferred.reject(response.data);
+        });
+        return deferred.promise;
+    }
+
+    function getIbmCloudSettings(key) {
+        var deferred = $q.defer();
+        var url = '/api/admin/ibmCloudSettings/' + key;
+        $http.get(url, null).then(function success(response) {
+            deferred.resolve(response.data);
+        }, function fail() {
+            deferred.reject();
+        });
+        return deferred.promise;
+    }
+
+    function saveIbmCloudSettings(ibmCloudSettings) {
+        var deferred = $q.defer();
+        var url = '/api/admin/ibmCloudSettings';
+        $http.post(url, ibmCloudSettings).then(function success(response) {
             deferred.resolve(response.data);
         }, function fail(response) {
             deferred.reject(response.data);
@@ -78,6 +103,17 @@ function AdminService($http, $q) {
     function sendTestMail(settings) {
         var deferred = $q.defer();
         var url = '/api/admin/settings/testMail';
+        $http.post(url, settings).then(function success() {
+            deferred.resolve();
+        }, function fail(response) {
+            deferred.reject(response.data);
+        });
+        return deferred.promise;
+    }
+
+    function sendTestIBMCloudConnection(settings) {
+        var deferred = $q.defer();
+        var url = '/api/admin/settings/testIBMCloud';
         $http.post(url, settings).then(function success() {
             deferred.resolve();
         }, function fail(response) {

@@ -15,7 +15,8 @@
  */
 /* eslint-disable import/no-unresolved, import/default */
 
-import logoSvg from '../../svg/logo_title_white.svg';
+import logoSvg from '../../svg/logo_title_white_login.svg';
+import backgroundImage from '../../jpeg/navity-bg.jpg';
 
 /* eslint-enable import/no-unresolved, import/default */
 
@@ -24,6 +25,8 @@ export default function LoginController(toast, loginService, userService, types,
     var vm = this;
 
     vm.logoSvg = logoSvg;
+
+    vm.backgroundImage = backgroundImage;
 
     vm.user = {
         name: '',

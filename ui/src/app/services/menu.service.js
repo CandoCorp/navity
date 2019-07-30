@@ -82,7 +82,7 @@ function Menu(userService, $state, $rootScope) {
                             name: 'admin.system-settings',
                             type: 'toggle',
                             state: 'home.settings',
-                            height: '120px',
+                            height: '160px',
                             icon: 'settings',
                             pages: [
                                 {
@@ -96,6 +96,12 @@ function Menu(userService, $state, $rootScope) {
                                     type: 'link',
                                     state: 'home.settings.outgoing-mail',
                                     icon: 'mail'
+                                },
+                                {
+                                    name: 'admin.ibm-cloud-settings',
+                                    type: 'link',
+                                    state: 'home.settings.ibm-cloud-settings',
+                                    icon: 'cloud'
                                 },
                                 {
                                     name: 'admin.security-settings',
@@ -143,6 +149,11 @@ function Menu(userService, $state, $rootScope) {
                                         name: 'admin.security-settings',
                                         icon: 'security',
                                         state: 'home.settings.security-settings'
+                                    },
+                                    {
+                                        name: 'admin.ibm-cloud-settings',
+                                        state: 'home.settings.ibm-cloud-settings',
+                                        icon: 'cloud'
                                     }
                                 ]
                             }];

@@ -99,7 +99,11 @@
         "minimum-special-characters": "Minimum number of special characters",
         "minimum-special-characters-range": "Minimum number of special characters can't be negative",
         "password-expiration-period-days": "Password expiration period in days",
-        "password-expiration-period-days-range": "Password expiration period in days can't be negative"
+        "password-expiration-period-days-range": "Password expiration period in days can't be negative",
+        "ibm-cloud-settings": "IBM Cloud Settings",
+        "ibm-cloud-credentials": "Enter your Cloud Credentials",
+        "ibm-cloud-test-connection": "Test Connection",
+        "imb-cloud-test-sent": "Request sent!"
     },
     "alarm": {
         "alarm": "Alarm",

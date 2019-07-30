@@ -13,7 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import './login.scss';
+// import './login.scss';
+import './login-background.scss'
 
 import uiRouter from 'angular-ui-router';
 import thingsboardApiLogin from '../api/login.service';

@@ -13,11 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-/* eslint-disable import/no-unresolved, import/default */
 
 import generalSettingsTemplate from '../admin/general-settings.tpl.html';
 import outgoingMailSettingsTemplate from '../admin/outgoing-mail-settings.tpl.html';
 import securitySettingsTemplate from '../admin/security-settings.tpl.html';
+import ibmCloudSettingsTemplate from '../admin/ibm-cloud-settings.tpl.html';
 
 /* eslint-enable import/no-unresolved, import/default */
 
@@ -69,6 +69,25 @@ export default function AdminRoutes($stateProvider) {
             },
             ncyBreadcrumb: {
                 label: '{"icon": "mail", "label": "admin.outgoing-mail"}'
+            }
+        })
+        .state('home.settings.ibm-cloud-settings', {
+            url: '/ibm-cloud-settings',
+            module: 'private',
+            auth: ['SYS_ADMIN'],
+            views: {
+                "content@home": {
+                    templateUrl: ibmCloudSettingsTemplate,
+                    controllerAs: 'vm',
+                    controller: 'IbmCloudSettingsController'
+                }
+            },
+            data: {
+                key: "ibm",
+                pageTitle: 'admin.ibm-cloud-settings'
+            },
+            ncyBreadcrumb: {
+                label: '{"icon": "cloud", "label": "admin.ibm-cloud-settings"}'
             }
         })
         .state('home.settings.security-settings', {

@@ -53,5 +53,4 @@ export default function AdminController(adminService, toast, $scope, $rootScope,
             toast.showSuccess($translate.instant('admin.test-mail-sent'));
         });
     }
-
 }

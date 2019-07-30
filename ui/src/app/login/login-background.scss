@@ -1,0 +1,139 @@
+@import "~compass-sass-mixins/lib/compass";
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+input,
+button {
+  border: none;
+  outline: none;
+}
+
+.cont {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/142996/slider-2.jpg");
+  background-size: cover;
+
+  @media (max-width: 768px) {
+    font-size: 50%;
+  }
+}
+
+.demo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 30rem;
+  height: 53rem;
+  margin-top: -26.5rem;
+  margin-left: -15rem;
+  overflow: hidden;
+}
+
+.login {
+  position: relative;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(55, 71, 79, .8) 0%, rgba(0, 0, 0, .6) 100%);
+  transition: opacity .1s, transform .3s cubic-bezier(.17, -.65, .665, 1.25);
+  transform: scale(1);
+
+  &.inactive {
+    opacity: 0;
+    transform: scale(1.1);
+  }
+
+
+  &__submit {
+    position: relative;
+    width: 100%;
+    height: 4rem;
+    margin: 5rem 0 2.2rem;
+    overflow: hidden;
+    font-size: 1.5rem;
+    color: rgba(255, 255, 255, .8);
+    cursor: pointer;
+    background: #eceff1;
+    border-radius: 3rem;
+    transition: width .3s .15s, font-size .1s .15s;
+
+    &::after {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 3rem;
+      height: 3rem;
+      margin-top: -1.5rem;
+      margin-left: -1.5rem;
+      content: "";
+      border: 2px dotted #fff;
+      border-bottom: none;
+      border-left: none;
+      border-radius: 50%;
+      opacity: 0;
+      transition: opacity .1s .4s;
+    }
+
+    &.processing {
+      width: 4rem;
+      font-size: 0;
+
+      &::after {
+        opacity: 1;
+        animation: rotate .5s .4s infinite linear;
+      }
+    }
+
+    &.success {
+      opacity: .9;
+      transition: transform .3s .1s ease-out, opacity .1s .3s, background-color .1s .3s;
+      transform: scale(30);
+
+      //background-color: rgba(255,255,255,0.95);
+
+      &::after {
+        opacity: 0;
+        transition: opacity .1s 0s;
+        animation: none;
+      }
+    }
+  }
+}
+
+.ripple {
+  position: absolute;
+  width: 15rem;
+  height: 15rem;
+  margin-top: -7.5rem;
+  margin-left: -7.5rem;
+  background: rgba(0, 0, 0, .4);
+  border-radius: 50%;
+  transform: scale(0);
+  animation: animRipple .4s;
+}
+
+@keyframes animRipple {
+  to {
+    opacity: 0;
+    transform: scale(3.5);
+  }
+}
+
+@keyframes rotate {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes animatePath {
+  to {
+    stroke-dashoffset: 0;
+  }
+}

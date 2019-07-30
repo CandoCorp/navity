@@ -23,6 +23,7 @@ import thingsboardToast from '../services/toast';
 import AdminRoutes from './admin.routes';
 import AdminController from './admin.controller';
 import SecuritySettingsController from './security-settings.controller';
+import IbmCloudSettingsController from './ibm-cloud-settings.controller';
 
 export default angular.module('thingsboard.admin', [
     uiRouter,
@@ -35,4 +36,5 @@ export default angular.module('thingsboard.admin', [
     .config(AdminRoutes)
     .controller('AdminController', AdminController)
     .controller('SecuritySettingsController', SecuritySettingsController)
+    .controller('IbmCloudSettingsController', IbmCloudSettingsController)
     .name;

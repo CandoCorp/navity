@@ -23,8 +23,14 @@ md-card.tb-login-card {
   }
 
   md-card-title {
+    padding: 25px 15px 25px 15px;
+
     img.tb-login-logo {
-      height: 50px;
+      display: block;
+
+      height: 70px;
+
+      margin: auto;
     }
   }
 

@@ -26,9 +26,9 @@
     <artifactId>application</artifactId>
     <packaging>jar</packaging>
 
-    <name>ThingsBoard Server Application</name>
-    <url>https://thingsboard.io</url>
-    <description>Open-source IoT Platform - Device management, data collection, processing and visualization
+    <name>Navity Server Application</name>
+    <url>https://navity.net</url>
+    <description>IoT Platform - Device management, data collection, processing and visualization
     </description>
 
     <properties>
@@ -41,6 +41,11 @@
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>com.ibm.watson</groupId>
+            <artifactId>ibm-watson</artifactId>
+            <version>7.3.0</version>
+        </dependency>
         <dependency>
             <groupId>de.ruedigermoeller</groupId>
             <artifactId>fst</artifactId>

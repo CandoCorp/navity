@@ -19,15 +19,15 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>org.thingsboard</groupId>
-        <version>2.4.1-SNAPSHOT</version>
-        <artifactId>thingsboard</artifactId>
+        <groupId>net.navity</groupId>
+        <artifactId>navity</artifactId>
+        <version>1.1.0-SNAPSHOT</version>
     </parent>
     <artifactId>tools</artifactId>
     <packaging>jar</packaging>
 
-    <name>Thingsboard Server Tools</name>
-    <url>https://thingsboard.io</url>
+    <name>Navity Server Tools</name>
+    <url>https://navity.net</url>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -36,7 +36,7 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.thingsboard.common</groupId>
+            <groupId>net.navity.common</groupId>
             <artifactId>data</artifactId>
         </dependency>
         <dependency>

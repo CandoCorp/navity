@@ -19,16 +19,16 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>org.thingsboard.common</groupId>
-        <version>2.4.1-SNAPSHOT</version>
+        <groupId>net.navity.common</groupId>
+        <version>1.1.0-SNAPSHOT</version>
         <artifactId>transport</artifactId>
     </parent>
-    <groupId>org.thingsboard.common.transport</groupId>
+    <groupId>net.navity.common.transport</groupId>
     <artifactId>coap</artifactId>
     <packaging>jar</packaging>
 
-    <name>Thingsboard CoAP Transport Common</name>
-    <url>https://thingsboard.io</url>
+    <name>Navity CoAP Transport Common</name>
+    <url>https://navity.net</url>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -37,7 +37,7 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.thingsboard.common.transport</groupId>
+            <groupId>net.navity.common.transport</groupId>
             <artifactId>transport-api</artifactId>
         </dependency>
         <dependency>

@@ -3,7 +3,7 @@
 
 
 ### BEGIN INIT INFO
-# Provides:          tb-web-ui
+# Provides:          navity-js-executor
 # Required-Start:    $remote_fs $syslog $network
 # Required-Stop:     $remote_fs $syslog $network
 # Default-Start:     2 3 4 5

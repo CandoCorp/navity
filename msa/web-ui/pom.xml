@@ -19,24 +19,24 @@
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>org.thingsboard</groupId>
-        <version>2.4.1-SNAPSHOT</version>
+        <groupId>net.navity</groupId>
+        <version>1.1.0-SNAPSHOT</version>
         <artifactId>msa</artifactId>
     </parent>
-    <groupId>org.thingsboard.msa</groupId>
+    <groupId>net.navity.msa</groupId>
     <artifactId>web-ui</artifactId>
     <packaging>pom</packaging>
 
-    <name>ThingsBoard Web UI Microservice</name>
-    <url>https://thingsboard.io</url>
-    <description>Service for hosting ThingsBoard Web UI</description>
+    <name>Navity Web UI Microservice</name>
+    <url>https://navity.net</url>
+    <description>Service for hosting Navity Web UI</description>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <main.dir>${basedir}/../..</main.dir>
-        <pkg.name>tb-web-ui</pkg.name>
-        <docker.name>tb-web-ui</docker.name>
-        <pkg.user>thingsboard</pkg.user>
+        <pkg.name>navity-web-ui</pkg.name>
+        <docker.name>navity-web-ui</docker.name>
+        <pkg.user>navity</pkg.user>
         <pkg.unixLogFolder>/var/log/${pkg.name}</pkg.unixLogFolder>
         <pkg.installFolder>/usr/share/${pkg.name}</pkg.installFolder>
         <pkg.linux.dist>${project.build.directory}/package/linux</pkg.linux.dist>
@@ -45,7 +45,7 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.thingsboard</groupId>
+            <groupId>net.navity</groupId>
             <artifactId>ui</artifactId>
             <version>${project.version}</version>
             <type>jar</type>
@@ -65,7 +65,7 @@
             <plugin>
                 <groupId>com.github.eirslett</groupId>
                 <artifactId>frontend-maven-plugin</artifactId>
-                <version>1.0</version>
+                <version>1.7.6</version>
                 <configuration>
                     <installDirectory>target</installDirectory>
                     <workingDirectory>${basedir}</workingDirectory>
@@ -104,7 +104,7 @@
                         <configuration>
                             <artifactItems>
                                 <artifactItem>
-                                    <groupId>org.thingsboard</groupId>
+                                    <groupId>net.navity</groupId>
                                     <artifactId>ui</artifactId>
                                     <type>jar</type>
                                     <overWrite>false</overWrite>
@@ -188,7 +188,7 @@
                                 <resource>
                                     <directory>config</directory>
                                     <excludes>
-                                        <exclude>tb-web-ui.conf</exclude>
+                                        <exclude>navity-web-ui.conf</exclude>
                                     </excludes>
                                     <filtering>true</filtering>
                                 </resource>
@@ -348,7 +348,7 @@
                     <plugin>
                         <groupId>com.github.eirslett</groupId>
                         <artifactId>frontend-maven-plugin</artifactId>
-                        <version>1.0</version>
+                        <version>1.7.6</version>
                         <configuration>
                             <installDirectory>target</installDirectory>
                             <workingDirectory>${basedir}</workingDirectory>

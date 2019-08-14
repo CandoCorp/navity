@@ -19,31 +19,31 @@
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>org.thingsboard</groupId>
-        <version>2.4.1-SNAPSHOT</version>
+        <groupId>net.navity</groupId>
+        <version>1.1.0-SNAPSHOT</version>
         <artifactId>msa</artifactId>
     </parent>
-    <groupId>org.thingsboard.msa</groupId>
-    <artifactId>tb-node</artifactId>
+    <groupId>net.navity.msa</groupId>
+    <artifactId>navity-node</artifactId>
     <packaging>pom</packaging>
 
-    <name>ThingsBoard Node Microservice</name>
-    <url>https://thingsboard.io</url>
-    <description>ThingsBoard Node Microservice</description>
+    <name>Navity Node Microservice</name>
+    <url>https://navity.net</url>
+    <description>Navity Node Microservice</description>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <main.dir>${basedir}/../..</main.dir>
-        <pkg.name>thingsboard</pkg.name>
-        <docker.name>tb-node</docker.name>
-        <pkg.user>thingsboard</pkg.user>
+        <pkg.name>navity</pkg.name>
+        <docker.name>navity-node</docker.name>
+        <pkg.user>navity</pkg.user>
         <pkg.unixLogFolder>/var/log/${pkg.name}</pkg.unixLogFolder>
         <pkg.installFolder>/usr/share/${pkg.name}</pkg.installFolder>
     </properties>
 
     <dependencies>
         <dependency>
-            <groupId>org.thingsboard</groupId>
+            <groupId>net.navity</groupId>
             <artifactId>application</artifactId>
             <version>${project.version}</version>
             <classifier>deb</classifier>
@@ -59,7 +59,7 @@
                 <artifactId>maven-dependency-plugin</artifactId>
                 <executions>
                     <execution>
-                        <id>copy-tb-deb</id>
+                        <id>copy-navity-deb</id>
                         <phase>package</phase>
                         <goals>
                             <goal>copy</goal>
@@ -67,7 +67,7 @@
                         <configuration>
                             <artifactItems>
                                 <artifactItem>
-                                    <groupId>org.thingsboard</groupId>
+                                    <groupId>net.navity</groupId>
                                     <artifactId>application</artifactId>
                                     <classifier>deb</classifier>
                                     <type>deb</type>

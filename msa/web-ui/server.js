@@ -26,23 +26,23 @@ var server;
 
 (async() => {
     try {
-        logger.info('Starting ThingsBoard Web UI Microservice...');
+        logger.info('Starting Navity Web UI Microservice...');
 
         const bindAddress = config.get('server.address');
         const bindPort = config.get('server.port');
 
-        const thingsboardEnableProxy = config.get('thingsboard.enableProxy');
+        const navityEnableProxy = config.get('navity.enableProxy');
 
-        const thingsboardHost = config.get('thingsboard.host');
-        const thingsboardPort = config.get('thingsboard.port');
+        const navityHost = config.get('navity.host');
+        const navityPort = config.get('navity.port');
 
         logger.info('Bind address: %s', bindAddress);
         logger.info('Bind port: %s', bindPort);
-        logger.info('ThingsBoard Enable Proxy: %s', thingsboardEnableProxy);
-        logger.info('ThingsBoard host: %s', thingsboardHost);
-        logger.info('ThingsBoard port: %s', thingsboardPort);
+        logger.info('Navity Enable Proxy: %s', navityEnableProxy);
+        logger.info('Navity host: %s', navityHost);
+        logger.info('Navity port: %s', navityPort);
 
-        const useApiProxy = thingsboardEnableProxy === "true";
+        const useApiProxy = navityEnableProxy === "true";
 
         var webDir = path.join(__dirname, 'web');
 
@@ -58,8 +58,8 @@ var server;
         if (useApiProxy) {
             apiProxy = httpProxy.createProxyServer({
                 target: {
-                    host: thingsboardHost,
-                    port: thingsboardPort
+                    host: navityHost,
+                    port: navityPort
                 }
             });
 
@@ -67,9 +67,9 @@ var server;
                 logger.warn('API proxy error: %s', err.message);
                 res.writeHead(500);
                 if (err.code && err.code === 'ECONNREFUSED') {
-                    res.end('Unable to connect to ThingsBoard server.');
+                    res.end('Unable to connect to Navity server.');
                 } else {
-                    res.end('Thingsboard server connection error: ' + err.code ? err.code : '');
+                    res.end('Navity server connection error: ' + err.code ? err.code : '');
                 }
             });
         }
@@ -104,17 +104,17 @@ var server;
 
         server.listen(bindPort, bindAddress, (error) => {
             if (error) {
-                logger.error('Failed to start ThingsBoard Web UI Microservice: %s', e.message);
+                logger.error('Failed to start Navity Web UI Microservice: %s', e.message);
                 logger.error(error.stack);
                 exit(-1);
             } else {
                 logger.info('==> 🌎  Listening on port %s.', bindPort);
-                logger.info('Started ThingsBoard Web UI Microservice.');
+                logger.info('Started Navity Web UI Microservice.');
             }
         });
 
     } catch (e) {
-        logger.error('Failed to start ThingsBoard Web UI Microservice: %s', e.message);
+        logger.error('Failed to start Navity Web UI Microservice: %s', e.message);
         logger.error(e.stack);
         exit(-1);
     }

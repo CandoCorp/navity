@@ -19,16 +19,15 @@
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>org.thingsboard</groupId>
-        <version>2.4.1-SNAPSHOT</version>
-        <artifactId>thingsboard</artifactId>
+        <groupId>net.navity</groupId>
+        <artifactId>navity</artifactId>
+        <version>1.1.0-SNAPSHOT</version>
     </parent>
-    <groupId>org.thingsboard</groupId>
     <artifactId>ui</artifactId>
     <packaging>jar</packaging>
 
-    <name>Thingsboard Server UI</name>
-    <url>https://thingsboard.io</url>
+    <name>Navity Server UI</name>
+    <url>https://navity.net</url>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -45,7 +44,7 @@
             <plugin>
                 <groupId>com.github.eirslett</groupId>
                 <artifactId>frontend-maven-plugin</artifactId>
-                <version>1.0</version>
+                <version>1.7.6</version>
                 <configuration>
                     <installDirectory>target</installDirectory>
                     <workingDirectory>${basedir}</workingDirectory>
@@ -85,7 +84,7 @@
                     <plugin>
                         <groupId>com.github.eirslett</groupId>
                         <artifactId>frontend-maven-plugin</artifactId>
-                        <version>1.0</version>
+                        <version>1.7.6</version>
                         <configuration>
                             <installDirectory>target</installDirectory>
                             <workingDirectory>${basedir}</workingDirectory>
@@ -117,7 +116,7 @@
                     <plugin>
                         <groupId>com.github.eirslett</groupId>
                         <artifactId>frontend-maven-plugin</artifactId>
-                        <version>1.0</version>
+                        <version>1.7.6</version>
                         <configuration>
                             <installDirectory>target</installDirectory>
                             <workingDirectory>${basedir}</workingDirectory>

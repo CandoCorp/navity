@@ -18,7 +18,7 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   name: zookeeper
-  namespace: thingsboard
+  namespace: navity
 spec:
   template:
     metadata:
@@ -50,7 +50,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: zookeeper
-  namespace: thingsboard
+  namespace: navity
 spec:
   type: ClusterIP
   selector:
@@ -62,13 +62,13 @@ spec:
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: tb-kafka
-  namespace: thingsboard
+  name: navity-kafka
+  namespace: navity
 spec:
   template:
     metadata:
       labels:
-        app: tb-kafka
+        app: navity-kafka
     spec:
       containers:
       - name: server
@@ -112,26 +112,26 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: tb-kafka
-  namespace: thingsboard
+  name: navity-kafka
+  namespace: navity
 spec:
   type: ClusterIP
   selector:
-    app: tb-kafka
+    app: navity-kafka
   ports:
-  - name: tb-kafka-port
+  - name: navity-kafka-port
     port: 9092
 ---
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: tb-redis
-  namespace: thingsboard
+  name: navity-redis
+  namespace: navity
 spec:
   template:
     metadata:
       labels:
-        app: tb-redis
+        app: navity-redis
     spec:
       containers:
       - name: server
@@ -158,46 +158,46 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: tb-redis
-  namespace: thingsboard
+  name: navity-redis
+  namespace: navity
 spec:
   type: ClusterIP
   selector:
-    app: tb-redis
+    app: navity-redis
   ports:
-  - name: tb-redis-port
+  - name: navity-redis-port
     port: 6379
 ---
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: tb-js-executor
-  namespace: thingsboard
+  name: navity-js-executor
+  namespace: navity
 spec:
   replicas: 20
   selector:
     matchLabels:
-      app: tb-js-executor
+      app: navity-js-executor
   template:
     metadata:
       labels:
-        app: tb-js-executor
+        app: navity-js-executor
     spec:
       containers:
       - name: server
         imagePullPolicy: Always
-        image: thingsboard/tb-js-executor:latest
+        image: navity/navity-js-executor:latest
         env:
         - name: REMOTE_JS_EVAL_REQUEST_TOPIC
           value: "js.eval.requests"
-        - name: TB_KAFKA_SERVERS
-          value: "tb-kafka:9092"
+        - name: NAVITY_KAFKA_SERVERS
+          value: "navity-kafka:9092"
         - name: LOGGER_LEVEL
           value: "info"
         - name: LOG_FOLDER
           value: "logs"
         - name: LOGGER_FILENAME
-          value: "tb-js-executor-%DATE%.log"
+          value: "navity-js-executor-%DATE%.log"
         - name: DOCKER_MODE
           value: "true"
         - name: SCRIPT_BODY_TRACE_FREQUENCY
@@ -207,31 +207,31 @@ spec:
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: tb-node
-  namespace: thingsboard
+  name: navity-node
+  namespace: navity
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: tb-node
+      app: navity-node
   template:
     metadata:
       labels:
-        app: tb-node
+        app: navity-node
     spec:
       volumes:
-        - name: tb-node-config
+        - name: navity-node-config
           configMap:
-            name: tb-node-config
+            name: navity-node-config
             items:
             - key: conf
-              path:  thingsboard.conf
+              path:  navity.conf
             - key: logback
               path:  logback.xml
       containers:
       - name: server
         imagePullPolicy: Always
-        image: thingsboard/tb-node:latest
+        image: navity/navity-node:latest
         ports:
         - containerPort: 8080
           name: http
@@ -246,7 +246,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: metadata.name
-        - name: TB_HOST
+        - name: NAVITY_HOST
           valueFrom:
             fieldRef:
               fieldPath: metadata.name
@@ -254,8 +254,8 @@ spec:
           value: "true"
         - name: ZOOKEEPER_URL
           value: "zookeeper:2181"
-        - name: TB_KAFKA_SERVERS
-          value: "tb-kafka:9092"
+        - name: NAVITY_KAFKA_SERVERS
+          value: "navity-kafka:9092"
         - name: JS_EVALUATOR
           value: "remote"
         - name: TRANSPORT_TYPE
@@ -263,15 +263,15 @@ spec:
         - name: CACHE_TYPE
           value: "redis"
         - name: REDIS_HOST
-          value: "tb-redis"
+          value: "navity-redis"
         - name: HTTP_LOG_CONTROLLER_ERROR_STACK_TRACE
           value: "false"
         envFrom:
         - configMapRef:
-            name: tb-node-db-config
+            name: navity-node-db-config
         volumeMounts:
           - mountPath: /config
-            name: tb-node-config
+            name: navity-node-config
         livenessProbe:
           httpGet:
             path: /login
@@ -283,12 +283,12 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: tb-node
-  namespace: thingsboard
+  name: navity-node
+  namespace: navity
 spec:
   type: ClusterIP
   selector:
-    app: tb-node
+    app: navity-node
   ports:
   - port: 8080
     name: http
@@ -296,31 +296,31 @@ spec:
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: tb-mqtt-transport
-  namespace: thingsboard
+  name: navity-mqtt-transport
+  namespace: navity
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: tb-mqtt-transport
+      app: navity-mqtt-transport
   template:
     metadata:
       labels:
-        app: tb-mqtt-transport
+        app: navity-mqtt-transport
     spec:
       volumes:
-        - name: tb-mqtt-transport-config
+        - name: navity-mqtt-transport-config
           configMap:
-            name: tb-mqtt-transport-config
+            name: navity-mqtt-transport-config
             items:
             - key: conf
-              path:  tb-mqtt-transport.conf
+              path:  navity-mqtt-transport.conf
             - key: logback
               path:  logback.xml
       containers:
       - name: server
         imagePullPolicy: Always
-        image: thingsboard/tb-mqtt-transport:latest
+        image: navity/navity-mqtt-transport:latest
         ports:
         - containerPort: 1883
           name: mqtt
@@ -329,7 +329,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: metadata.name
-        - name: TB_HOST
+        - name: NAVITY_HOST
           valueFrom:
             fieldRef:
               fieldPath: metadata.name
@@ -339,11 +339,11 @@ spec:
           value: "1883"
         - name: MQTT_TIMEOUT
           value: "10000"
-        - name: TB_KAFKA_SERVERS
-          value: "tb-kafka:9092"
+        - name: NAVITY_KAFKA_SERVERS
+          value: "navity-kafka:9092"
         volumeMounts:
           - mountPath: /config
-            name: tb-mqtt-transport-config
+            name: navity-mqtt-transport-config
         readinessProbe:
           periodSeconds: 20
           tcpSocket:
@@ -357,12 +357,12 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: tb-mqtt-transport
-  namespace: thingsboard
+  name: navity-mqtt-transport
+  namespace: navity
 spec:
   type: LoadBalancer
   selector:
-    app: tb-mqtt-transport
+    app: navity-mqtt-transport
   ports:
   - port: 1883
     targetPort: 1883
@@ -371,31 +371,31 @@ spec:
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: tb-http-transport
-  namespace: thingsboard
+  name: navity-http-transport
+  namespace: navity
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: tb-http-transport
+      app: navity-http-transport
   template:
     metadata:
       labels:
-        app: tb-http-transport
+        app: navity-http-transport
     spec:
       volumes:
-        - name: tb-http-transport-config
+        - name: navity-http-transport-config
           configMap:
-            name: tb-http-transport-config
+            name: navity-http-transport-config
             items:
             - key: conf
-              path:  tb-http-transport.conf
+              path:  navity-http-transport.conf
             - key: logback
               path:  logback.xml
       containers:
       - name: server
         imagePullPolicy: Always
-        image: thingsboard/tb-http-transport:latest
+        image: navity/navity-http-transport:latest
         ports:
         - containerPort: 8080
           name: http
@@ -404,7 +404,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: metadata.name
-        - name: TB_HOST
+        - name: NAVITY_HOST
           valueFrom:
             fieldRef:
               fieldPath: metadata.name
@@ -414,11 +414,11 @@ spec:
           value: "8080"
         - name: HTTP_REQUEST_TIMEOUT
           value: "60000"
-        - name: TB_KAFKA_SERVERS
-          value: "tb-kafka:9092"
+        - name: NAVITY_KAFKA_SERVERS
+          value: "navity-kafka:9092"
         volumeMounts:
           - mountPath: /config
-            name: tb-http-transport-config
+            name: navity-http-transport-config
         readinessProbe:
           periodSeconds: 20
           tcpSocket:
@@ -432,12 +432,12 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: tb-http-transport
-  namespace: thingsboard
+  name: navity-http-transport
+  namespace: navity
 spec:
   type: ClusterIP
   selector:
-    app: tb-http-transport
+    app: navity-http-transport
   ports:
   - port: 8080
     name: http
@@ -445,31 +445,31 @@ spec:
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: tb-coap-transport
-  namespace: thingsboard
+  name: navity-coap-transport
+  namespace: navity
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: tb-coap-transport
+      app: navity-coap-transport
   template:
     metadata:
       labels:
-        app: tb-coap-transport
+        app: navity-coap-transport
     spec:
       volumes:
-        - name: tb-coap-transport-config
+        - name: navity-coap-transport-config
           configMap:
-            name: tb-coap-transport-config
+            name: navity-coap-transport-config
             items:
             - key: conf
-              path:  tb-coap-transport.conf
+              path:  navity-coap-transport.conf
             - key: logback
               path:  logback.xml
       containers:
       - name: server
         imagePullPolicy: Always
-        image: thingsboard/tb-coap-transport:latest
+        image: navity/navity-coap-transport:latest
         ports:
         - containerPort: 5683
           name: coap
@@ -479,7 +479,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: metadata.name
-        - name: TB_HOST
+        - name: NAVITY_HOST
           valueFrom:
             fieldRef:
               fieldPath: metadata.name
@@ -489,22 +489,22 @@ spec:
           value: "5683"
         - name: COAP_TIMEOUT
           value: "10000"
-        - name: TB_KAFKA_SERVERS
-          value: "tb-kafka:9092"
+        - name: NAVITY_KAFKA_SERVERS
+          value: "navity-kafka:9092"
         volumeMounts:
           - mountPath: /config
-            name: tb-coap-transport-config
+            name: navity-coap-transport-config
       restartPolicy: Always
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: tb-coap-transport
-  namespace: thingsboard
+  name: navity-coap-transport
+  namespace: navity
 spec:
   type: LoadBalancer
   selector:
-    app: tb-coap-transport
+    app: navity-coap-transport
   ports:
   - port: 5683
     name: coap
@@ -513,22 +513,22 @@ spec:
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: tb-web-ui
-  namespace: thingsboard
+  name: navity-web-ui
+  namespace: navity
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: tb-web-ui
+      app: navity-web-ui
   template:
     metadata:
       labels:
-        app: tb-web-ui
+        app: navity-web-ui
     spec:
       containers:
       - name: server
         imagePullPolicy: Always
-        image: thingsboard/tb-web-ui:latest
+        image: navity/navity-web-ui:latest
         ports:
         - containerPort: 8080
           name: http
@@ -537,14 +537,14 @@ spec:
           value: "0.0.0.0"
         - name: HTTP_BIND_PORT
           value: "8080"
-        - name: TB_ENABLE_PROXY
+        - name: NAVITY_ENABLE_PROXY
           value: "false"
         - name: LOGGER_LEVEL
           value: "info"
         - name: LOG_FOLDER
           value: "logs"
         - name: LOGGER_FILENAME
-          value: "tb-web-ui-%DATE%.log"
+          value: "navity-web-ui-%DATE%.log"
         - name: DOCKER_MODE
           value: "true"
         livenessProbe:
@@ -558,12 +558,12 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: tb-web-ui
-  namespace: thingsboard
+  name: navity-web-ui
+  namespace: navity
 spec:
   type: ClusterIP
   selector:
-    app: tb-web-ui
+    app: navity-web-ui
   ports:
   - port: 8080
     name: http
@@ -571,8 +571,8 @@ spec:
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: tb-ingress
-  namespace: thingsboard
+  name: navity-ingress
+  namespace: navity
   annotations:
     nginx.ingress.kubernetes.io/use-regex: "true"
     nginx.ingress.kubernetes.io/ssl-redirect: "false"
@@ -583,26 +583,26 @@ spec:
       paths:
       - path: /api/v1/.*
         backend:
-          serviceName: tb-http-transport
+          serviceName: navity-http-transport
           servicePort: 8080
       - path: /static/rulenode/.*
         backend:
-          serviceName: tb-node
+          serviceName: navity-node
           servicePort: 8080
       - path: /static/.*
         backend:
-          serviceName: tb-web-ui
+          serviceName: navity-web-ui
           servicePort: 8080
       - path: /index.html.*
         backend:
-          serviceName: tb-web-ui
+          serviceName: navity-web-ui
           servicePort: 8080
       - path: /
         backend:
-          serviceName: tb-web-ui
+          serviceName: navity-web-ui
           servicePort: 8080
       - path: /.*
         backend:
-          serviceName: tb-node
+          serviceName: navity-node
           servicePort: 8080
 ---

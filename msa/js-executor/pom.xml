@@ -19,24 +19,24 @@
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>org.thingsboard</groupId>
-        <version>2.4.1-SNAPSHOT</version>
+        <groupId>net.navity</groupId>
+        <version>1.1.0-SNAPSHOT</version>
         <artifactId>msa</artifactId>
     </parent>
-    <groupId>org.thingsboard.msa</groupId>
+    <groupId>net.navity.msa</groupId>
     <artifactId>js-executor</artifactId>
     <packaging>pom</packaging>
 
-    <name>ThingsBoard JavaScript Executor Microservice</name>
-    <url>https://thingsboard.io</url>
+    <name>Navity JavaScript Executor Microservice</name>
+    <url>https://navity.net</url>
     <description>Service executing JavaScript functions in sandboxed environment</description>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <main.dir>${basedir}/../..</main.dir>
-        <pkg.name>tb-js-executor</pkg.name>
-        <docker.name>tb-js-executor</docker.name>
-        <pkg.user>thingsboard</pkg.user>
+        <pkg.name>navity-js-executor</pkg.name>
+        <docker.name>navity-js-executor</docker.name>
+        <pkg.user>navity</pkg.user>
         <pkg.unixLogFolder>/var/log/${pkg.name}</pkg.unixLogFolder>
         <pkg.installFolder>/usr/share/${pkg.name}</pkg.installFolder>
         <pkg.linux.dist>${project.build.directory}/package/linux</pkg.linux.dist>
@@ -164,7 +164,7 @@
                                 <resource>
                                     <directory>config</directory>
                                     <excludes>
-                                        <exclude>tb-js-executor.conf</exclude>
+                                        <exclude>navity-js-executor.conf</exclude>
                                     </excludes>
                                     <filtering>true</filtering>
                                 </resource>

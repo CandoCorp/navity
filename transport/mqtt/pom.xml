@@ -19,16 +19,16 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>org.thingsboard</groupId>
-        <version>2.4.1-SNAPSHOT</version>
+        <groupId>net.navity</groupId>
+        <version>1.1.0-SNAPSHOT</version>
         <artifactId>transport</artifactId>
     </parent>
-    <groupId>org.thingsboard.transport</groupId>
+    <groupId>net.navity.transport</groupId>
     <artifactId>mqtt</artifactId>
     <packaging>jar</packaging>
 
-    <name>Thingsboard MQTT Transport Service</name>
-    <url>https://thingsboard.io</url>
+    <name>Navity MQTT Transport Service</name>
+    <url>https://navity.net</url>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -41,11 +41,11 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.thingsboard.common.transport</groupId>
+            <groupId>net.navity.common.transport</groupId>
             <artifactId>mqtt</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.thingsboard.common</groupId>
+            <groupId>net.navity.common</groupId>
             <artifactId>queue</artifactId>
         </dependency>
         <dependency>
@@ -239,7 +239,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <mainClass>org.thingsboard.server.mqtt.ThingsboardMqttTransportApplication</mainClass>
+                    <mainClass>net.navity.server.mqtt.ThingsboardMqttTransportApplication</mainClass>
                     <classifier>boot</classifier>
                     <layout>ZIP</layout>
                     <executable>true</executable>

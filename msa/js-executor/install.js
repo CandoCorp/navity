@@ -21,11 +21,11 @@ let _projectRoot = null;
 
 
 (async() => {
-    await fse.move(path.join(projectRoot(), 'target', 'thingsboard-js-executor-linux'),
-                   path.join(targetPackageDir('linux'), 'bin', 'tb-js-executor'),
+    await fse.move(path.join(projectRoot(), 'target', 'navity-js-executor-linux'),
+                   path.join(targetPackageDir('linux'), 'bin', 'navity-js-executor'),
                    {overwrite: true});
-    await fse.move(path.join(projectRoot(), 'target', 'thingsboard-js-executor-win.exe'),
-                   path.join(targetPackageDir('windows'), 'bin', 'tb-js-executor.exe'),
+    await fse.move(path.join(projectRoot(), 'target', 'navity-js-executor-win.exe'),
+                   path.join(targetPackageDir('windows'), 'bin', 'navity-js-executor.exe'),
                    {overwrite: true});
 })();
 

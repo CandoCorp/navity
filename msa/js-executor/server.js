@@ -24,7 +24,7 @@ var kafkaClient;
 
 (async() => {
     try {
-        logger.info('Starting ThingsBoard JavaScript Executor Microservice...');
+        logger.info('Starting Navity JavaScript Executor Microservice...');
 
         const kafkaBootstrapServers = config.get('kafka.bootstrap.servers');
         const kafkaRequestTopic = config.get('kafka.request_topic');
@@ -74,11 +74,11 @@ var kafkaClient;
             consumer.on('message', (message) => {
                 messageProcessor.onJsInvokeMessage(message);
             });
-            logger.info('Started ThingsBoard JavaScript Executor Microservice.');
+            logger.info('Started Navity JavaScript Executor Microservice.');
         });
 
     } catch (e) {
-        logger.error('Failed to start ThingsBoard JavaScript Executor Microservice: %s', e.message);
+        logger.error('Failed to start Navity JavaScript Executor Microservice: %s', e.message);
         logger.error(e.stack);
         exit(-1);
     }

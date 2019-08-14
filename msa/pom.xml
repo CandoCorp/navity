@@ -19,27 +19,27 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>org.thingsboard</groupId>
-        <version>2.4.1-SNAPSHOT</version>
-        <artifactId>thingsboard</artifactId>
+        <groupId>net.navity</groupId>
+        <artifactId>navity</artifactId>
+        <version>1.1.0-SNAPSHOT</version>
     </parent>
     <artifactId>msa</artifactId>
     <packaging>pom</packaging>
 
-    <name>ThingsBoard Microservices</name>
-    <url>https://thingsboard.io</url>
+    <name>Navity Microservices</name>
+    <url>https://navity.net</url>
 
     <properties>
         <main.dir>${basedir}/..</main.dir>
-        <docker.repo>thingsboard</docker.repo>
+        <docker.repo>navity</docker.repo>
         <dockerfile.skip>true</dockerfile.skip>
     </properties>
 
     <modules>
-        <module>tb</module>
+        <module>navity</module>
         <module>js-executor</module>
         <module>web-ui</module>
-        <module>tb-node</module>
+        <module>navity-node</module>
         <module>transport</module>
         <module>black-box-tests</module>
     </modules>

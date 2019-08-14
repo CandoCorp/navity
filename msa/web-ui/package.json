@@ -1,8 +1,8 @@
 {
-  "name": "thingsboard-web-ui",
+  "name": "navity-web-ui",
   "private": true,
   "version": "2.4.1",
-  "description": "ThingsBoard Web UI Microservice",
+  "description": "Navity Web UI Microservice",
   "main": "server.js",
   "bin": "server.js",
   "scripts": {

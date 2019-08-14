@@ -1,8 +1,8 @@
 {
-  "name": "thingsboard-js-executor",
+  "name": "navity-js-executor",
   "private": true,
   "version": "2.4.1",
-  "description": "ThingsBoard JavaScript Executor Microservice",
+  "description": "Navity JavaScript Executor Microservice",
   "main": "server.js",
   "bin": "server.js",
   "scripts": {

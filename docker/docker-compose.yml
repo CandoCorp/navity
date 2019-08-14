@@ -40,15 +40,15 @@ services:
     image: redis:4.0
     ports:
       - "6379"
-  tb-js-executor:
+  navity-js-executor:
     restart: always
     image: "${DOCKER_REPO}/${JS_EXECUTOR_DOCKER_NAME}:${TB_VERSION}"
     scale: 20
     env_file:
-      - tb-js-executor.env
+      - navity-js-executor.env
     depends_on:
       - kafka
-  tb1:
+  navity1:
     restart: always
     image: "${DOCKER_REPO}/${TB_NODE_DOCKER_NAME}:${TB_VERSION}"
     ports:
@@ -59,18 +59,18 @@ services:
         max-size: "200m"
         max-file: "30"
     environment:
-      TB_HOST: tb1
-      CLUSTER_NODE_ID: tb1
+      TB_HOST: navity1
+      CLUSTER_NODE_ID: navity1
     env_file:
-      - tb-node.env
+      - navity-node.env
     volumes:
-      - ./tb-node/conf:/config
-      - ./tb-node/log:/var/log/thingsboard
+      - ./navity-node/conf:/config
+      - ./navity-node/log:/var/log/thingsboard
     depends_on:
       - kafka
       - redis
-      - tb-js-executor
-  tb2:
+      - navity-js-executor
+  navity2:
     restart: always
     image: "${DOCKER_REPO}/${TB_NODE_DOCKER_NAME}:${TB_VERSION}"
     ports:
@@ -81,60 +81,60 @@ services:
         max-size: "200m"
         max-file: "30"
     environment:
-      TB_HOST: tb2
-      CLUSTER_NODE_ID: tb2
+      TB_HOST: navity2
+      CLUSTER_NODE_ID: navity2
     env_file:
-      - tb-node.env
+      - navity-node.env
     volumes:
-      - ./tb-node/conf:/config
-      - ./tb-node/log:/var/log/thingsboard
+      - ./navity-node/conf:/config
+      - ./navity-node/log:/var/log/thingsboard
     depends_on:
       - kafka
       - redis
-      - tb-js-executor
-  tb-mqtt-transport1:
+      - navity-js-executor
+  navity-mqtt-transport1:
     restart: always
     image: "${DOCKER_REPO}/${MQTT_TRANSPORT_DOCKER_NAME}:${TB_VERSION}"
     ports:
       - "1883"
     environment:
-      TB_HOST: tb-mqtt-transport1
-      CLUSTER_NODE_ID: tb-mqtt-transport1
+      TB_HOST: navity-mqtt-transport1
+      CLUSTER_NODE_ID: navity-mqtt-transport1
     env_file:
-      - tb-mqtt-transport.env
+      - navity-mqtt-transport.env
     volumes:
-      - ./tb-transports/mqtt/conf:/config
-      - ./tb-transports/mqtt/log:/var/log/tb-mqtt-transport
+      - ./navity-transports/mqtt/conf:/config
+      - ./navity-transports/mqtt/log:/var/log/navity-mqtt-transport
     depends_on:
       - kafka
-  tb-mqtt-transport2:
+  navity-mqtt-transport2:
     restart: always
     image: "${DOCKER_REPO}/${MQTT_TRANSPORT_DOCKER_NAME}:${TB_VERSION}"
     ports:
       - "1883"
     environment:
-      TB_HOST: tb-mqtt-transport2
-      CLUSTER_NODE_ID: tb-mqtt-transport2
+      TB_HOST: navity-mqtt-transport2
+      CLUSTER_NODE_ID: navity-mqtt-transport2
     env_file:
-      - tb-mqtt-transport.env
+      - navity-mqtt-transport.env
     volumes:
-      - ./tb-transports/mqtt/conf:/config
-      - ./tb-transports/mqtt/log:/var/log/tb-mqtt-transport
+      - ./navity-transports/mqtt/conf:/config
+      - ./navity-transports/mqtt/log:/var/log/tb-mqtt-transport
     depends_on:
       - kafka
-  tb-http-transport1:
+  navity-http-transport1:
     restart: always
     image: "${DOCKER_REPO}/${HTTP_TRANSPORT_DOCKER_NAME}:${TB_VERSION}"
     ports:
       - "8081"
     environment:
-      TB_HOST: tb-http-transport1
-      CLUSTER_NODE_ID: tb-http-transport1
+      TB_HOST: navity-http-transport1
+      CLUSTER_NODE_ID: navity-http-transport1
     env_file:
-      - tb-http-transport.env
+      - navity-http-transport.env
     volumes:
-      - ./tb-transports/http/conf:/config
-      - ./tb-transports/http/log:/var/log/tb-http-transport
+      - ./navity-transports/http/conf:/config
+      - ./navity-transports/http/log:/var/log/tb-http-transport
     depends_on:
       - kafka
   tb-http-transport2:

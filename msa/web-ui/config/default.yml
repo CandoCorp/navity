@@ -28,4 +28,4 @@ thingsboard:
 logger:
   level: "info"
   path: "logs"
-  filename: "tb-web-ui-%DATE%.log"
+  filename: "navity-web-ui-%DATE%.log"

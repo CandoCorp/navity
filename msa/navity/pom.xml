@@ -19,33 +19,33 @@
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>org.thingsboard</groupId>
-        <version>2.4.1-SNAPSHOT</version>
+        <groupId>net.navity</groupId>
+        <version>1.1.0-SNAPSHOT</version>
         <artifactId>msa</artifactId>
     </parent>
-    <groupId>org.thingsboard.msa</groupId>
-    <artifactId>tb</artifactId>
+    <groupId>net.navity.msa</groupId>
+    <artifactId>navity</artifactId>
     <packaging>pom</packaging>
 
-    <name>ThingsBoard Docker Images</name>
-    <url>https://thingsboard.io</url>
-    <description>ThingsBoard Docker Images</description>
+    <name>Navity Docker Images</name>
+    <url>https://navity.net</url>
+    <description>Navity Docker Images</description>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <main.dir>${basedir}/../..</main.dir>
-        <pkg.name>thingsboard</pkg.name>
-        <tb.docker.name>tb</tb.docker.name>
-        <tb-postgres.docker.name>tb-postgres</tb-postgres.docker.name>
-        <tb-cassandra.docker.name>tb-cassandra</tb-cassandra.docker.name>
-        <pkg.user>thingsboard</pkg.user>
+        <pkg.name>navity</pkg.name>
+        <navity.docker.name>navity</navity.docker.name>
+        <navity-postgres.docker.name>navity-postgres</navity-postgres.docker.name>
+        <navity-cassandra.docker.name>navity-cassandra</navity-cassandra.docker.name>
+        <pkg.user>navity</pkg.user>
         <pkg.installFolder>/usr/share/${pkg.name}</pkg.installFolder>
         <pkg.upgradeVersion>2.3.1</pkg.upgradeVersion>
     </properties>
 
     <dependencies>
         <dependency>
-            <groupId>org.thingsboard</groupId>
+            <groupId>net.navity</groupId>
             <artifactId>application</artifactId>
             <version>${project.version}</version>
             <classifier>deb</classifier>
@@ -61,7 +61,7 @@
                 <artifactId>maven-dependency-plugin</artifactId>
                 <executions>
                     <execution>
-                        <id>copy-tb-deb</id>
+                        <id>copy-navity-deb</id>
                         <phase>package</phase>
                         <goals>
                             <goal>copy</goal>
@@ -69,7 +69,7 @@
                         <configuration>
                             <artifactItems>
                                 <artifactItem>
-                                    <groupId>org.thingsboard</groupId>
+                                    <groupId>net.navity</groupId>
                                     <artifactId>application</artifactId>
                                     <classifier>deb</classifier>
                                     <type>deb</type>
@@ -80,7 +80,7 @@
                         </configuration>
                     </execution>
                     <execution>
-                        <id>copy-tb-postgres-deb</id>
+                        <id>copy-navity-postgres-deb</id>
                         <phase>package</phase>
                         <goals>
                             <goal>copy</goal>
@@ -88,7 +88,7 @@
                         <configuration>
                             <artifactItems>
                                 <artifactItem>
-                                    <groupId>org.thingsboard</groupId>
+                                    <groupId>net.navity</groupId>
                                     <artifactId>application</artifactId>
                                     <classifier>deb</classifier>
                                     <type>deb</type>
@@ -99,7 +99,7 @@
                         </configuration>
                     </execution>
                     <execution>
-                        <id>copy-tb-cassandra-deb</id>
+                        <id>copy-navity-cassandra-deb</id>
                         <phase>package</phase>
                         <goals>
                             <goal>copy</goal>
@@ -107,7 +107,7 @@
                         <configuration>
                             <artifactItems>
                                 <artifactItem>
-                                    <groupId>org.thingsboard</groupId>
+                                    <groupId>net.navity</groupId>
                                     <artifactId>application</artifactId>
                                     <classifier>deb</classifier>
                                     <type>deb</type>
@@ -124,7 +124,7 @@
                 <artifactId>maven-resources-plugin</artifactId>
                 <executions>
                     <execution>
-                        <id>copy-docker-tb-config</id>
+                        <id>copy-docker-navity-config</id>
                         <phase>process-resources</phase>
                         <goals>
                             <goal>copy-resources</goal>
@@ -144,7 +144,7 @@
                         </configuration>
                     </execution>
                     <execution>
-                        <id>copy-docker-tb-postgres-config</id>
+                        <id>copy-docker-navity-postgres-config</id>
                         <phase>process-resources</phase>
                         <goals>
                             <goal>copy-resources</goal>
@@ -164,7 +164,7 @@
                         </configuration>
                     </execution>
                     <execution>
-                        <id>copy-docker-tb-cassandra-config</id>
+                        <id>copy-docker-navity-cassandra-config</id>
                         <phase>process-resources</phase>
                         <goals>
                             <goal>copy-resources</goal>
@@ -190,80 +190,80 @@
                 <artifactId>dockerfile-maven-plugin</artifactId>
                 <executions>
                     <execution>
-                        <id>build-docker-tb-image</id>
+                        <id>build-docker-navity-image</id>
                         <phase>pre-integration-test</phase>
                         <goals>
                             <goal>build</goal>
                         </goals>
                         <configuration>
                             <skip>${dockerfile.skip}</skip>
-                            <repository>${docker.repo}/${tb.docker.name}</repository>
+                            <repository>${docker.repo}/${navity.docker.name}</repository>
                             <verbose>true</verbose>
                             <googleContainerRegistryEnabled>false</googleContainerRegistryEnabled>
                             <contextDirectory>${project.build.directory}/docker-tb</contextDirectory>
                         </configuration>
                     </execution>
                     <execution>
-                        <id>tag-docker-tb-image</id>
+                        <id>tag-docker-navity-image</id>
                         <phase>pre-integration-test</phase>
                         <goals>
                             <goal>tag</goal>
                         </goals>
                         <configuration>
                             <skip>${dockerfile.skip}</skip>
-                            <repository>${docker.repo}/${tb.docker.name}</repository>
+                            <repository>${docker.repo}/${navity.docker.name}</repository>
                             <tag>${project.version}</tag>
                         </configuration>
                     </execution>
                     <execution>
-                        <id>build-docker-tb-postgres-image</id>
+                        <id>build-docker-navity-postgres-image</id>
                         <phase>pre-integration-test</phase>
                         <goals>
                             <goal>build</goal>
                         </goals>
                         <configuration>
                             <skip>${dockerfile.skip}</skip>
-                            <repository>${docker.repo}/${tb-postgres.docker.name}</repository>
+                            <repository>${docker.repo}/${navity-postgres.docker.name}</repository>
                             <verbose>true</verbose>
                             <googleContainerRegistryEnabled>false</googleContainerRegistryEnabled>
                             <contextDirectory>${project.build.directory}/docker-postgres</contextDirectory>
                         </configuration>
                     </execution>
                     <execution>
-                        <id>tag-docker-tb-postgres-image</id>
+                        <id>tag-docker-navity-postgres-image</id>
                         <phase>pre-integration-test</phase>
                         <goals>
                             <goal>tag</goal>
                         </goals>
                         <configuration>
                             <skip>${dockerfile.skip}</skip>
-                            <repository>${docker.repo}/${tb-postgres.docker.name}</repository>
+                            <repository>${docker.repo}/${navity-postgres.docker.name}</repository>
                             <tag>${project.version}</tag>
                         </configuration>
                     </execution>
                     <execution>
-                        <id>build-docker-tb-cassandra-image</id>
+                        <id>build-docker-navity-cassandra-image</id>
                         <phase>pre-integration-test</phase>
                         <goals>
                             <goal>build</goal>
                         </goals>
                         <configuration>
                             <skip>${dockerfile.skip}</skip>
-                            <repository>${docker.repo}/${tb-cassandra.docker.name}</repository>
+                            <repository>${docker.repo}/${navity-cassandra.docker.name}</repository>
                             <verbose>true</verbose>
                             <googleContainerRegistryEnabled>false</googleContainerRegistryEnabled>
                             <contextDirectory>${project.build.directory}/docker-cassandra</contextDirectory>
                         </configuration>
                     </execution>
                     <execution>
-                        <id>tag-docker-tb-cassandra-image</id>
+                        <id>tag-docker-navity-cassandra-image</id>
                         <phase>pre-integration-test</phase>
                         <goals>
                             <goal>tag</goal>
                         </goals>
                         <configuration>
                             <skip>${dockerfile.skip}</skip>
-                            <repository>${docker.repo}/${tb-cassandra.docker.name}</repository>
+                            <repository>${docker.repo}/${navity-cassandra.docker.name}</repository>
                             <tag>${project.version}</tag>
                         </configuration>
                     </execution>
@@ -286,69 +286,69 @@
                         <artifactId>dockerfile-maven-plugin</artifactId>
                         <executions>
                             <execution>
-                                <id>push-latest-docker-tb-image</id>
+                                <id>push-latest-docker-navity-image</id>
                                 <phase>pre-integration-test</phase>
                                 <goals>
                                     <goal>push</goal>
                                 </goals>
                                 <configuration>
                                     <tag>latest</tag>
-                                    <repository>${docker.repo}/${tb.docker.name}</repository>
+                                    <repository>${docker.repo}/${navity.docker.name}</repository>
                                 </configuration>
                             </execution>
                             <execution>
-                                <id>push-version-docker-tb-image</id>
+                                <id>push-version-docker-navity-image</id>
                                 <phase>pre-integration-test</phase>
                                 <goals>
                                     <goal>push</goal>
                                 </goals>
                                 <configuration>
                                     <tag>${project.version}</tag>
-                                    <repository>${docker.repo}/${tb.docker.name}</repository>
+                                    <repository>${docker.repo}/${navity.docker.name}</repository>
                                 </configuration>
                             </execution>
                             <execution>
-                                <id>push-latest-docker-tb-postgres-image</id>
+                                <id>push-latest-docker-navity-postgres-image</id>
                                 <phase>pre-integration-test</phase>
                                 <goals>
                                     <goal>push</goal>
                                 </goals>
                                 <configuration>
                                     <tag>latest</tag>
-                                    <repository>${docker.repo}/${tb-postgres.docker.name}</repository>
+                                    <repository>${docker.repo}/${navity-postgres.docker.name}</repository>
                                 </configuration>
                             </execution>
                             <execution>
-                                <id>push-version-docker-tb-postgres-image</id>
+                                <id>push-version-docker-navity-postgres-image</id>
                                 <phase>pre-integration-test</phase>
                                 <goals>
                                     <goal>push</goal>
                                 </goals>
                                 <configuration>
                                     <tag>${project.version}</tag>
-                                    <repository>${docker.repo}/${tb-postgres.docker.name}</repository>
+                                    <repository>${docker.repo}/${navity-postgres.docker.name}</repository>
                                 </configuration>
                             </execution>
                             <execution>
-                                <id>push-latest-docker-tb-cassandra-image</id>
+                                <id>push-latest-docker-navity-cassandra-image</id>
                                 <phase>pre-integration-test</phase>
                                 <goals>
                                     <goal>push</goal>
                                 </goals>
                                 <configuration>
                                     <tag>latest</tag>
-                                    <repository>${docker.repo}/${tb-cassandra.docker.name}</repository>
+                                    <repository>${docker.repo}/${navity-cassandra.docker.name}</repository>
                                 </configuration>
                             </execution>
                             <execution>
-                                <id>push-version-docker-tb-cassandra-image</id>
+                                <id>push-version-docker-navity-cassandra-image</id>
                                 <phase>pre-integration-test</phase>
                                 <goals>
                                     <goal>push</goal>
                                 </goals>
                                 <configuration>
                                     <tag>${project.version}</tag>
-                                    <repository>${docker.repo}/${tb-cassandra.docker.name}</repository>
+                                    <repository>${docker.repo}/${navity-cassandra.docker.name}</repository>
                                 </configuration>
                             </execution>
                         </executions>

@@ -20,16 +20,16 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>org.thingsboard</groupId>
-        <version>2.4.1-SNAPSHOT</version>
+        <groupId>net.navity</groupId>
+        <version>1.1.0-SNAPSHOT</version>
         <artifactId>msa</artifactId>
     </parent>
-    <groupId>org.thingsboard.msa</groupId>
+    <groupId>net.navity.msa</groupId>
     <artifactId>black-box-tests</artifactId>
 
-    <name>ThingsBoard Black Box Tests</name>
-    <url>https://thingsboard.io</url>
-    <description>Project for ThingsBoard black box testing with using Docker</description>
+    <name>Navity Black Box Tests</name>
+    <url>https://navity.net</url>
+    <description>Project for Navity black box testing with using Docker</description>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -83,11 +83,11 @@
             <artifactId>guava</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.thingsboard</groupId>
+            <groupId>net.navity</groupId>
             <artifactId>netty-mqtt</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.thingsboard</groupId>
+            <groupId>net.navity</groupId>
             <artifactId>tools</artifactId>
         </dependency>
     </dependencies>

@@ -21,11 +21,11 @@ let _projectRoot = null;
 
 
 (async() => {
-    await fse.move(path.join(projectRoot(), 'target', 'thingsboard-web-ui-linux'),
-                   path.join(targetPackageDir('linux'), 'bin', 'tb-web-ui'),
+    await fse.move(path.join(projectRoot(), 'target', 'navity-web-ui-linux'),
+                   path.join(targetPackageDir('linux'), 'bin', 'navity-web-ui'),
                    {overwrite: true});
-    await fse.move(path.join(projectRoot(), 'target', 'thingsboard-web-ui-win.exe'),
-                   path.join(targetPackageDir('windows'), 'bin', 'tb-web-ui.exe'),
+    await fse.move(path.join(projectRoot(), 'target', 'navity-web-ui-win.exe'),
+                   path.join(targetPackageDir('windows'), 'bin', 'navity-web-ui.exe'),
                    {overwrite: true});
 })();
 

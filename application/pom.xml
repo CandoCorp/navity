@@ -35,7 +35,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <main.dir>${basedir}/..</main.dir>
-        <pkg.name>thingsboard</pkg.name>
+        <pkg.name>navity</pkg.name>
         <pkg.unixLogFolder>/var/log/${pkg.name}</pkg.unixLogFolder>
         <pkg.installFolder>/usr/share/${pkg.name}</pkg.installFolder>
         <pkg.win.dist>${project.build.directory}/windows</pkg.win.dist>
@@ -302,7 +302,7 @@
                 <version>${surfire.version}</version>
                 <configuration>
                     <systemPropertyVariables>
-                        <spring.config.name>thingsboard</spring.config.name>
+                        <spring.config.name>navity</spring.config.name>
                     </systemPropertyVariables>
                     <includes>
                         <include>**/*TestSuite.java</include>
@@ -370,7 +370,7 @@
                                 <resource>
                                     <directory>src/main/conf</directory>
                                     <excludes>
-                                        <exclude>thingsboard.conf</exclude>
+                                        <exclude>navity.conf</exclude>
                                     </excludes>
                                     <filtering>true</filtering>
                                 </resource>

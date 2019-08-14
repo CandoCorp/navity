@@ -14,10 +14,11 @@
 # limitations under the License.
 #
 
-FROM thingsboard/openjdk8
+FROM openjdk:8-jdk
 
 RUN apt-get update
 RUN apt-get install -y curl nmap procps
+RUN apt-get install -y openjdk-8-jre openjdk-8-jdk-headless
 RUN echo 'deb http://www.apache.org/dist/cassandra/debian 311x main' | tee --append /etc/apt/sources.list.d/cassandra.list > /dev/null
 RUN curl https://www.apache.org/dist/cassandra/KEYS | apt-key add -
 RUN apt-get update
@@ -37,6 +38,8 @@ RUN chmod a+x /tmp/*.sh \
 RUN dpkg -i /tmp/${pkg.name}.deb
 
 RUN systemctl --no-reload disable --now ${pkg.name}.service > /dev/null 2>&1 || :
+
+RUN mkdir -p ${pkg.installFolder}/conf
 
 RUN mv /tmp/logback.xml ${pkg.installFolder}/conf \
     && mv /tmp/${pkg.name}.conf ${pkg.installFolder}/conf

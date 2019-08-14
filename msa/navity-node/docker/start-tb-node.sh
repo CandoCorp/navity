@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Copyright © 2016-2019 The Thingsboard Authors
+# Copyright © 2016-2019 The Navity Authors
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -32,7 +32,7 @@ if [ "$INSTALL_TB" == "true" ]; then
         loadDemo=false
     fi
 
-    echo "Starting ThingsBoard installation ..."
+    echo "Starting Navity installation ..."
 
     exec java -cp ${jarfile} $JAVA_OPTS -Dloader.main=org.thingsboard.server.ThingsboardInstallApplication \
                         -Dinstall.load_demo=${loadDemo} \
@@ -41,7 +41,7 @@ if [ "$INSTALL_TB" == "true" ]; then
                         -Dlogging.config=/usr/share/thingsboard/bin/install/logback.xml \
                         org.springframework.boot.loader.PropertiesLauncher
 
-elif [ "$UPGRADE_TB" == "true" ]; then
+elif [ "$UPGRADE_NAVITY" == "true" ]; then
 
     echo "Starting ThingsBoard upgrade ..."
 

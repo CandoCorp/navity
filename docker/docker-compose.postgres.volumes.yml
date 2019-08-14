@@ -20,41 +20,41 @@ services:
   postgres:
     volumes:
       - postgres-db-volume:/var/lib/postgresql/data
-  tb1:
+  navity1:
     volumes:
-      - tb-log-volume:/var/log/thingsboard
-  tb2:
+      - navity-log-volume:/var/log/navity
+  navity2:
     volumes:
-      - tb-log-volume:/var/log/thingsboard
-  tb-coap-transport:
+      - navity-log-volume:/var/log/navity
+  navity-coap-transport:
     volumes:
-      - tb-coap-transport-log-volume:/var/log/tb-coap-transport
-  tb-http-transport1:
+      - navity-coap-transport-log-volume:/var/log/navity-coap-transport
+  navity-http-transport1:
     volumes:
-      - tb-http-transport-log-volume:/var/log/tb-http-transport
-  tb-http-transport2:
+      - navity-http-transport-log-volume:/var/log/navity-http-transport
+  navity-http-transport2:
     volumes:
-      - tb-http-transport-log-volume:/var/log/tb-http-transport
-  tb-mqtt-transport1:
+      - navity-http-transport-log-volume:/var/log/navity-http-transport
+  navity-mqtt-transport1:
     volumes:
-      - tb-mqtt-transport-log-volume:/var/log/tb-mqtt-transport
-  tb-mqtt-transport2:
+      - navity-mqtt-transport-log-volume:/var/log/navity-mqtt-transport
+  navity-mqtt-transport2:
     volumes:
-      - tb-mqtt-transport-log-volume:/var/log/tb-mqtt-transport
+      - navity-mqtt-transport-log-volume:/var/log/navity-mqtt-transport
 
 volumes:
   postgres-db-volume:
     external: true
     name: ${POSTGRES_DATA_VOLUME}
-  tb-log-volume:
+  navity-log-volume:
     external: true
-    name: ${TB_LOG_VOLUME}
-  tb-coap-transport-log-volume:
+    name: ${NAVITY_LOG_VOLUME}
+  navity-coap-transport-log-volume:
     external: true
-    name: ${TB_COAP_TRANSPORT_LOG_VOLUME}
-  tb-http-transport-log-volume:
+    name: ${NAVITY_COAP_TRANSPORT_LOG_VOLUME}
+  navity-http-transport-log-volume:
     external: true
-    name: ${TB_HTTP_TRANSPORT_LOG_VOLUME}
-  tb-mqtt-transport-log-volume:
+    name: ${NAVITY_HTTP_TRANSPORT_LOG_VOLUME}
+  navity-mqtt-transport-log-volume:
     external: true
-    name: ${TB_MQTT_TRANSPORT_LOG_VOLUME}
+    name: ${NAVITY_MQTT_TRANSPORT_LOG_VOLUME}

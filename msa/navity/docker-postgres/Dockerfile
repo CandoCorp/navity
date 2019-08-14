@@ -14,9 +14,10 @@
 # limitations under the License.
 #
 
-FROM thingsboard/openjdk8
+FROM openjdk:8-jdk
 
 RUN apt-get update
+RUN apt-get install -y openjdk-8-jre openjdk-8-jdk-headless
 RUN apt-get install -y postgresql postgresql-contrib
 RUN update-rc.d postgresql disable
 
@@ -34,10 +35,12 @@ RUN chmod a+x /tmp/*.sh \
 
 RUN dpkg -i /tmp/${pkg.name}.deb
 
-RUN systemctl --no-reload disable --now ${pkg.name}.service > /dev/null 2>&1 || :
+RUN mkdir -p ${pkg.installFolder}/conf
 
 RUN mv /tmp/logback.xml ${pkg.installFolder}/conf \
     && mv /tmp/${pkg.name}.conf ${pkg.installFolder}/conf
+
+RUN systemctl --no-reload disable --now ${pkg.name}.service > /dev/null 2>&1 || :
 
 ENV DATA_FOLDER=/data
 

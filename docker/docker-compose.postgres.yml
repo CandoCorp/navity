@@ -25,17 +25,17 @@ services:
     environment:
       POSTGRES_DB: thingsboard
     volumes:
-      - ./tb-node/postgres:/var/lib/postgresql/data
-  tb1:
+      - ./navity-node/postgres:/var/lib/postgresql/data
+  navity1:
     env_file:
-      - tb-node.postgres.env
+      - navity-node.postgres.env
     depends_on:
       - kafka
       - redis
       - postgres
-  tb2:
+  navity2:
     env_file:
-      - tb-node.postgres.env
+      - navity-node.postgres.env
     depends_on:
       - kafka
       - redis

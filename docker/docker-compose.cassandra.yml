@@ -23,17 +23,17 @@ services:
     ports:
     - "9042"
     volumes:
-      - ./tb-node/cassandra:/var/lib/cassandra
-  tb1:
+      - ./navity-node/cassandra:/var/lib/cassandra
+  navity1:
     env_file:
-      - tb-node.cassandra.env
+      - navity-node.cassandra.env
     depends_on:
       - kafka
       - redis
       - cassandra
-  tb2:
+  navity2:
     env_file:
-      - tb-node.cassandra.env
+      - navity-node.cassandra.env
     depends_on:
       - kafka
       - redis

@@ -34,7 +34,7 @@
         </encoder>
     </appender>
 
-    <logger name="org.thingsboard.server" level="INFO" />
+    <logger name="org.navity.server" level="INFO" />
     <logger name="akka" level="INFO" />
 
     <root level="INFO">

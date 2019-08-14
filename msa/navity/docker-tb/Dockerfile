@@ -14,7 +14,10 @@
 # limitations under the License.
 #
 
-FROM thingsboard/openjdk8
+FROM openjdk:8-jdk
+
+RUN apt-get update
+RUN apt-get install -y openjdk-8-jre openjdk-8-jdk-headless
 
 COPY logback.xml ${pkg.name}.conf start-db.sh stop-db.sh start-tb.sh upgrade-tb.sh install-tb.sh ${pkg.name}.deb /tmp/
 
@@ -27,10 +30,12 @@ RUN chmod a+x /tmp/*.sh \
 
 RUN dpkg -i /tmp/${pkg.name}.deb
 
-RUN systemctl --no-reload disable --now ${pkg.name}.service > /dev/null 2>&1 || :
+RUN mkdir -p ${pkg.installFolder}/conf
 
 RUN mv /tmp/logback.xml ${pkg.installFolder}/conf \
     && mv /tmp/${pkg.name}.conf ${pkg.installFolder}/conf
+
+RUN systemctl --no-reload disable --now ${pkg.name}.service > /dev/null 2>&1 || :
 
 ENV DATA_FOLDER=/data
 
@@ -42,7 +47,7 @@ ENV SPRING_JPA_DATABASE_PLATFORM=org.hibernate.dialect.HSQLDialect
 ENV SPRING_DRIVER_CLASS_NAME=org.hsqldb.jdbc.JDBCDriver
 ENV SPRING_DATASOURCE_URL=jdbc:hsqldb:file:/data/db/thingsboardDb;sql.enforce_size=false;hsqldb.log_size=5
 ENV SPRING_DATASOURCE_USERNAME=sa
-ENV SPRING_DATASOURCE_PASSWORD=
+ENV SPRING_DATASOURCE_PASSWORD=sa
 
 EXPOSE 9090
 EXPOSE 1883

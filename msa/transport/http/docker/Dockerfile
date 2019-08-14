@@ -14,15 +14,18 @@
 # limitations under the License.
 #
 
-FROM thingsboard/openjdk8
+FROM openjdk:8-jdk
 
-COPY start-tb-http-transport.sh ${pkg.name}.deb /tmp/
+RUN apt-get update
+RUN apt-get install -y openjdk-8-jre openjdk-8-jdk-headless
+
+COPY start-navity-http-transport.sh ${pkg.name}.deb /tmp/
 
 RUN chmod a+x /tmp/*.sh \
-    && mv /tmp/start-tb-http-transport.sh /usr/bin
+    && mv /tmp/start-navity-http-transport.sh /usr/bin
 
 RUN dpkg -i /tmp/${pkg.name}.deb
 
-RUN update-rc.d ${pkg.name} disable
+#RUN update-rc.d ${pkg.name} disable
 
-CMD ["start-tb-http-transport.sh"]
+CMD ["start-navity-http-transport.sh"]

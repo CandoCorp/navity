@@ -14,7 +14,10 @@
 # limitations under the License.
 #
 
-FROM thingsboard/openjdk8
+FROM openjdk:8-jdk
+
+RUN apt-get update
+RUN apt-get install -y openjdk-8-jre openjdk-8-jdk-headless
 
 COPY start-tb-node.sh ${pkg.name}.deb /tmp/
 

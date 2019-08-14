@@ -37,13 +37,13 @@ java -cp "%jarfile%" -Dloader.main=org.thingsboard.server.ThingsboardInstallAppl
                     org.springframework.boot.loader.PropertiesLauncher
 
 if errorlevel 1 (
-   @echo ThingsBoard upgrade failed!
+   @echo Navity upgrade failed!
    POPD
    exit /b %errorlevel%
 )
 POPD
 
-@ECHO ThingsBoard upgraded successfully!
+@ECHO Navity upgraded successfully!
 
 GOTO END
 

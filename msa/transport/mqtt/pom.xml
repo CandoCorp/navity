@@ -34,9 +34,9 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <main.dir>${basedir}/../../..</main.dir>
-        <pkg.name>tb-mqtt-transport</pkg.name>
-        <docker.name>tb-mqtt-transport</docker.name>
-        <pkg.user>thingsboard</pkg.user>
+        <pkg.name>navity-mqtt-transport</pkg.name>
+        <docker.name>navity-mqtt-transport</docker.name>
+        <pkg.user>navity</pkg.user>
         <pkg.logFolder>/var/log/${pkg.name}</pkg.logFolder>
         <pkg.installFolder>/usr/share/${pkg.name}</pkg.installFolder>
     </properties>
@@ -59,7 +59,7 @@
                 <artifactId>maven-dependency-plugin</artifactId>
                 <executions>
                     <execution>
-                        <id>copy-tb-mqtt-transport-deb</id>
+                        <id>copy-navity-mqtt-transport-deb</id>
                         <phase>package</phase>
                         <goals>
                             <goal>copy</goal>

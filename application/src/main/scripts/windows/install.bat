@@ -23,7 +23,7 @@ if "%1" == "--loadDemo" (
 SET BASE=%~dp0
 SET LOADER_PATH=%BASE%\conf,%BASE%\extensions
 SET SQL_DATA_FOLDER=%BASE%\data\sql
-SET jarfile=%BASE%\lib\thingsboard.jar
+SET jarfile=%BASE%\lib\navity.jar
 SET installDir=%BASE%\data
 
 PUSHD "%BASE%\conf"
@@ -37,15 +37,15 @@ java -cp "%jarfile%" -Dloader.main=org.thingsboard.server.ThingsboardInstallAppl
                     org.springframework.boot.loader.PropertiesLauncher
 
 if errorlevel 1 (
-   @echo ThingsBoard installation failed!
+   @echo Navity installation failed!
    POPD
    exit /b %errorlevel%
 )
 POPD
 
-"%BASE%"thingsboard.exe install
+"%BASE%"navity.exe install
 
-@ECHO ThingsBoard installed successfully!
+@ECHO Navity installed successfully!
 
 GOTO END
 

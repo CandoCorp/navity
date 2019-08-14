@@ -42,7 +42,7 @@ services:
       - "6379"
   navity-js-executor:
     restart: always
-    image: "${DOCKER_REPO}/${JS_EXECUTOR_DOCKER_NAME}:${TB_VERSION}"
+    image: "${DOCKER_REPO}/${JS_EXECUTOR_DOCKER_NAME}:${NAVITY_VERSION}"
     scale: 20
     env_file:
       - navity-js-executor.env
@@ -50,7 +50,7 @@ services:
       - kafka
   navity1:
     restart: always
-    image: "${DOCKER_REPO}/${TB_NODE_DOCKER_NAME}:${TB_VERSION}"
+    image: "${DOCKER_REPO}/${NAVITY_NODE_DOCKER_NAME}:${NAVITY_VERSION}"
     ports:
       - "8080"
     logging:
@@ -59,7 +59,7 @@ services:
         max-size: "200m"
         max-file: "30"
     environment:
-      TB_HOST: navity1
+      NAVITY_HOST: navity1
       CLUSTER_NODE_ID: navity1
     env_file:
       - navity-node.env
@@ -72,7 +72,7 @@ services:
       - navity-js-executor
   navity2:
     restart: always
-    image: "${DOCKER_REPO}/${TB_NODE_DOCKER_NAME}:${TB_VERSION}"
+    image: "${DOCKER_REPO}/${NAVITY_NODE_DOCKER_NAME}:${NAVITY_VERSION}"
     ports:
       - "8080"
     logging:
@@ -81,7 +81,7 @@ services:
         max-size: "200m"
         max-file: "30"
     environment:
-      TB_HOST: navity2
+      NAVITY_HOST: navity2
       CLUSTER_NODE_ID: navity2
     env_file:
       - navity-node.env
@@ -94,11 +94,11 @@ services:
       - navity-js-executor
   navity-mqtt-transport1:
     restart: always
-    image: "${DOCKER_REPO}/${MQTT_TRANSPORT_DOCKER_NAME}:${TB_VERSION}"
+    image: "${DOCKER_REPO}/${MQTT_TRANSPORT_DOCKER_NAME}:${NAVITY_VERSION}"
     ports:
       - "1883"
     environment:
-      TB_HOST: navity-mqtt-transport1
+      NAVITY_HOST: navity-mqtt-transport1
       CLUSTER_NODE_ID: navity-mqtt-transport1
     env_file:
       - navity-mqtt-transport.env
@@ -109,11 +109,11 @@ services:
       - kafka
   navity-mqtt-transport2:
     restart: always
-    image: "${DOCKER_REPO}/${MQTT_TRANSPORT_DOCKER_NAME}:${TB_VERSION}"
+    image: "${DOCKER_REPO}/${MQTT_TRANSPORT_DOCKER_NAME}:${NAVITY_VERSION}"
     ports:
       - "1883"
     environment:
-      TB_HOST: navity-mqtt-transport2
+      NAVITY_HOST: navity-mqtt-transport2
       CLUSTER_NODE_ID: navity-mqtt-transport2
     env_file:
       - navity-mqtt-transport.env
@@ -124,67 +124,67 @@ services:
       - kafka
   navity-http-transport1:
     restart: always
-    image: "${DOCKER_REPO}/${HTTP_TRANSPORT_DOCKER_NAME}:${TB_VERSION}"
+    image: "${DOCKER_REPO}/${HTTP_TRANSPORT_DOCKER_NAME}:${NAVITY_VERSION}"
     ports:
       - "8081"
     environment:
-      TB_HOST: navity-http-transport1
+      NAVITY_HOST: navity-http-transport1
       CLUSTER_NODE_ID: navity-http-transport1
     env_file:
       - navity-http-transport.env
     volumes:
       - ./navity-transports/http/conf:/config
-      - ./navity-transports/http/log:/var/log/tb-http-transport
+      - ./navity-transports/http/log:/var/log/navity-http-transport
     depends_on:
       - kafka
-  tb-http-transport2:
+  navity-http-transport2:
     restart: always
-    image: "${DOCKER_REPO}/${HTTP_TRANSPORT_DOCKER_NAME}:${TB_VERSION}"
+    image: "${DOCKER_REPO}/${HTTP_TRANSPORT_DOCKER_NAME}:${NAVITY_VERSION}"
     ports:
       - "8081"
     environment:
-      TB_HOST: tb-http-transport2
-      CLUSTER_NODE_ID: tb-http-transport2
+      NAVITY_HOST: navity-http-transport2
+      CLUSTER_NODE_ID: navity-http-transport2
     env_file:
-      - tb-http-transport.env
+      - navity-http-transport.env
     volumes:
-      - ./tb-transports/http/conf:/config
-      - ./tb-transports/http/log:/var/log/tb-http-transport
+      - ./navity-transports/http/conf:/config
+      - ./navity-transports/http/log:/var/log/navity-http-transport
     depends_on:
       - kafka
-  tb-coap-transport:
+  navity-coap-transport:
     restart: always
-    image: "${DOCKER_REPO}/${COAP_TRANSPORT_DOCKER_NAME}:${TB_VERSION}"
+    image: "${DOCKER_REPO}/${COAP_TRANSPORT_DOCKER_NAME}:${NAVITY_VERSION}"
     ports:
       - "5683:5683/udp"
     environment:
-      TB_HOST: tb-coap-transport
-      CLUSTER_NODE_ID: tb-coap-transport
+      NAVITY_HOST: navity-coap-transport
+      CLUSTER_NODE_ID: navity-coap-transport
     env_file:
-      - tb-coap-transport.env
+      - navity-coap-transport.env
     volumes:
-      - ./tb-transports/coap/conf:/config
-      - ./tb-transports/coap/log:/var/log/tb-coap-transport
+      - ./navity-transports/coap/conf:/config
+      - ./navity-transports/coap/log:/var/log/navity-coap-transport
     depends_on:
       - kafka
-  tb-web-ui1:
+  navity-web-ui1:
     restart: always
-    image: "${DOCKER_REPO}/${WEB_UI_DOCKER_NAME}:${TB_VERSION}"
+    image: "${DOCKER_REPO}/${WEB_UI_DOCKER_NAME}:${NAVITY_VERSION}"
     ports:
       - "8080"
     env_file:
-      - tb-web-ui.env
-  tb-web-ui2:
+      - navity-web-ui.env
+  navity-web-ui2:
     restart: always
-    image: "${DOCKER_REPO}/${WEB_UI_DOCKER_NAME}:${TB_VERSION}"
+    image: "${DOCKER_REPO}/${WEB_UI_DOCKER_NAME}:${NAVITY_VERSION}"
     ports:
       - "8080"
     env_file:
-      - tb-web-ui.env
+      - navity-web-ui.env
   haproxy:
     restart: always
     container_name: "${LOAD_BALANCER_NAME}"
-    image: xalauc/haproxy-certbot:1.7.9
+    image: xalauc/haproxy-cernavityot:1.7.9
     volumes:
      - ./haproxy/config:/config
      - ./haproxy/letsencrypt:/etc/letsencrypt
@@ -202,11 +202,11 @@ services:
       MQTT_PORT: 1883
       FORCE_HTTPS_REDIRECT: "false"
     links:
-        - tb1
-        - tb2
-        - tb-web-ui1
-        - tb-web-ui2
-        - tb-mqtt-transport1
-        - tb-mqtt-transport2
-        - tb-http-transport1
-        - tb-http-transport2
+        - navity1
+        - navity2
+        - navity-web-ui1
+        - navity-web-ui2
+        - navity-mqtt-transport1
+        - navity-mqtt-transport2
+        - navity-http-transport1
+        - navity-http-transport2

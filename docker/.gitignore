@@ -1,8 +1,8 @@
 haproxy/certs.d/**
 haproxy/letsencrypt/**
-tb-node/log/**
-tb-node/db/**
-tb-node/postgres/**
-tb-node/cassandra/**
-tb-transports/*/log
+navity-node/log/**
+navity-node/db/**
+navity-node/postgres/**
+navity-node/cassandra/**
+navity-transports/*/log
 !.env

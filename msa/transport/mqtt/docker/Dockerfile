@@ -28,4 +28,4 @@ RUN dpkg -i /tmp/${pkg.name}.deb
 
 #RUN update-rc.d ${pkg.name} disable
 
-CMD ["start-tb-mqtt-transport.sh"]
+CMD ["start-navity-mqtt-transport.sh"]

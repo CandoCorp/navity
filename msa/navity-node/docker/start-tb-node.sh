@@ -43,7 +43,7 @@ if [ "$INSTALL_TB" == "true" ]; then
 
 elif [ "$UPGRADE_NAVITY" == "true" ]; then
 
-    echo "Starting ThingsBoard upgrade ..."
+    echo "Starting Navity upgrade ..."
 
     if [[ -z "${FROM_VERSION// }" ]]; then
         echo "FROM_VERSION variable is invalid or unspecified!"

@@ -72,14 +72,14 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: './src/index.html',
             filename: '../index.html',
-            title: 'ThingsBoard',
+            title: 'Navity',
             inject: 'body',
         }),
         new MiniCssExtractPlugin({
             filename: 'style.[contentHash].css'
         }),
         new webpack.DefinePlugin({
-            THINGSBOARD_VERSION: JSON.stringify(require('./package.json').version),
+            NAVITY_VERSION: JSON.stringify(require('./package.json').version),
             '__DEVTOOLS__': false,
             PUBLIC_PATH: PUBLIC_RESOURCE_PATH,
             SUPPORTED_LANGS: JSON.stringify(langs)

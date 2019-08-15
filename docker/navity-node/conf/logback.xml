@@ -21,7 +21,7 @@
 
     <appender name="fileLogAppender"
               class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>/var/log/navity/${NAVITY_HOST}/thingsboard.log</file>
+        <file>/var/log/navity/${NAVITY_HOST}/navity.log</file>
         <rollingPolicy
                 class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
             <fileNamePattern>/var/log/navity/${NAVITY_HOST}/navity.%d{yyyy-MM-dd}.%i.log</fileNamePattern>

@@ -1,4 +1,4 @@
-# ![alt-text](https://navity.net/assets/navity.png)
+# ![Navity](https://navity.net/assets/navity.png)
 
 Navity is a Wireless Sensor Network that allows having relevant information at sea, through our LPWAN network we can deploy smart sensors to help taking care of marine ecosystems, such as detecting the presence of unauthorized vessels, water pollution or help in early detection of floods in rivers.
 
